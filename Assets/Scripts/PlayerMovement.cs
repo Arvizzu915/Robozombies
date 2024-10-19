@@ -8,11 +8,12 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] Rigidbody rb;
 
-    [SerializeField] float walkingSpeed, jumpForce, desacceleration;
+    [SerializeField] float walkingSpeed, jumpForce, runningSpeed;
 
-    private Vector3 moveDirection;
+    private Vector3 moveDirection, localVelocity;
 
-    private bool grounded = true;
+    private bool grounded = true, running = false;
+    private float velocityX, velocityZ;
 
     // Start is called before the first frame update
     void Start()
@@ -23,34 +24,51 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //Debugging
+        //Debug.Log(running);
+
+
+        //Run
+        if (moveDirection.z == 0 || localVelocity.z <= 0)
+        {
+            running = false;
+        }
     }
 
     private void FixedUpdate()
     {
 
         //Walk
-        if (grounded && (MathF.Abs(rb.velocity.x) < 5f && MathF.Abs(rb.velocity.z) < 5f))
+        localVelocity = transform.InverseTransformDirection(rb.velocity);
+
+        if (grounded && !running)
         {
-            rb.AddForce(moveDirection * walkingSpeed, ForceMode.Acceleration);
+            velocityX = moveDirection.x * walkingSpeed / 2;
+            velocityZ = moveDirection.z * walkingSpeed;
+        }
+        else if (grounded && running) 
+        {
+            velocityX = moveDirection.x * runningSpeed / 3;
+            velocityZ = moveDirection.z * runningSpeed;
+        }
+        
+        if (!grounded && !running)
+        {
+            velocityX = moveDirection.x * walkingSpeed / 3;
+            velocityZ = moveDirection.z * walkingSpeed / 1.5f;
+        }
+        else if (!grounded && running)
+        {
+            velocityX = moveDirection.x * runningSpeed / 3;
+            velocityZ = moveDirection.z * runningSpeed / 1.5f;
         }
 
 
-        if (grounded && moveDirection.x == 0f)
-        {
-            if (rb.velocity.x != 0f) 
-            {
-                rb.AddForce(rb.velocity.x * desacceleration, 0f, 0f, ForceMode.Acceleration);
-            }
-        }
+        localVelocity.x = velocityX;
+        localVelocity.z = velocityZ;
 
-        if (grounded && moveDirection.z == 0f)
-        {
-            if (rb.velocity.z != 0f)
-            {
-                rb.AddForce(0f, 0f, rb.velocity.z * desacceleration, ForceMode.Acceleration);
-            }
-        }
+        rb.velocity = transform.TransformDirection(localVelocity);
+
     }
 
     //Player Actions
@@ -65,9 +83,17 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(InputAction.CallbackContext callbackContext)
     {
-        if (grounded && callbackContext.performed)
+        if (callbackContext.performed)
         {
             moveDirection = callbackContext.ReadValue<Vector3>();
+        }
+    }
+
+    public void Run(InputAction.CallbackContext callbackContext)
+    {
+        if (grounded && callbackContext.performed)
+        {
+            running = true;
         }
     }
 
