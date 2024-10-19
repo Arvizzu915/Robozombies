@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] Rigidbody rb;
 
+    [SerializeField] Camera mainCamera;
+
     [SerializeField] float walkingSpeed, jumpForce, runningSpeed;
 
     private Vector3 moveDirection, localVelocity;
@@ -38,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
 
-        //Walk
+        //Move
         localVelocity = transform.InverseTransformDirection(rb.velocity);
 
         if (grounded && !running)
@@ -69,6 +71,25 @@ public class PlayerMovement : MonoBehaviour
 
         rb.velocity = transform.TransformDirection(localVelocity);
 
+
+        //Rotate player to camera
+        RotatePlayerTowardsCamera();
+    }
+
+    //Funciones
+    private void RotatePlayerTowardsCamera()
+    {
+        if (mainCamera != null && rb != null)
+        {
+            Vector3 cameraForward = mainCamera.transform.forward;
+            cameraForward.y = 0f; // Ignore the y-axis rotation
+
+            if (cameraForward != Vector3.zero)
+            {
+                Quaternion newRotation = Quaternion.LookRotation(cameraForward);
+                rb.MoveRotation(newRotation);
+            }
+        }
     }
 
     //Player Actions
