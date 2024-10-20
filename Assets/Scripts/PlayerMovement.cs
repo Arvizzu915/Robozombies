@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] Camera mainCamera;
 
-    [SerializeField] float walkingSpeed, jumpForce, runningSpeed;
+    [SerializeField] float walkingSpeed, jumpForce, runningSpeed,wallrunSpeed;
 
     [SerializeField] CapsuleCollider standingCollider, crouchingCollider;
     [SerializeField] Transform standingHeight, crouchingHeight;
@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 moveDirection, localVelocity;
 
     private bool grounded = true, running = false, crouching = false, kneeSliding = false;
+    public bool wallRunning = false;
     private float velocityX, velocityZ;
 
     // Start is called before the first frame update
@@ -96,6 +97,10 @@ public class PlayerMovement : MonoBehaviour
             {
                 velocityX = moveDirection.x * walkingSpeed / 3;
                 velocityZ = moveDirection.z * walkingSpeed / 1.5f;
+            }
+            if (running && wallRunning)
+            {
+                velocityZ= moveDirection.z * wallrunSpeed;
             }
             else
             {
