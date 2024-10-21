@@ -76,17 +76,17 @@ public class PlayerMovement : MonoBehaviour
         {
             if (!running && !kneeSliding)
             {
-                velocityX = moveDirection.x * walkingSpeed / 2;
+                velocityX = moveDirection.x * walkingSpeed / 1.3f;
                 velocityZ = moveDirection.z * walkingSpeed;
             }
             else if (running && !kneeSliding)
             {
-                velocityX = moveDirection.x * runningSpeed / 3;
+                velocityX = moveDirection.x * runningSpeed / 1.8f;
                 velocityZ = moveDirection.z * runningSpeed;
             }
             else if (kneeSliding)
             {
-                velocityX = moveDirection.x * runningSpeed / 7;
+                velocityX = moveDirection.x * runningSpeed / 4;
                 velocityZ = runningSpeed * 1.6f;
             }
         }
