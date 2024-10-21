@@ -143,6 +143,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (grounded && callbackContext.performed)
         {
+            kneeSliding = false;
+            crouching = false;
             rb.velocity = new Vector3 (rb.velocity.x, 0f, rb.velocity.z);
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
@@ -152,7 +154,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (callbackContext.performed)
         {
-            moveDirection = callbackContext.ReadValue<Vector3>();
+            moveDirection = callbackContext.ReadValue<Vector3>().normalized;
         }
     }
 
