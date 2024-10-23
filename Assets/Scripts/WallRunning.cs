@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class WallRunning : MonoBehaviour
 {
@@ -12,8 +14,7 @@ public class WallRunning : MonoBehaviour
     public float wallRunTimer;
 
     [Header("Input")]
-    private float horizontalInput;
-    private float verticalInput;
+    Vector3 input;
 
     [Header("Detection")]
     public float wallCheckDistance;
@@ -55,11 +56,10 @@ public class WallRunning : MonoBehaviour
 
     private void StateMachine()
     {
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
+        
 
         //State 1
-        if((wallLeft||wallRight) && verticalInput>0 && AboveGround()) 
+        if((wallLeft||wallRight) && input.z!=0 && AboveGround()) 
         { 
             if(!pm.wallRunning)
         StartWallRun();
@@ -90,12 +90,17 @@ public class WallRunning : MonoBehaviour
             wallForward=-wallForward;
 
         rb.AddForce(wallForward * wallRunForce, ForceMode.Force);
-        if (!(wallLeft && horizontalInput > 0) && !(wallRight && horizontalInput < 0))
+        if (!(wallLeft && input.x > 0) && !(wallRight && input.x < 0))
         rb.AddForce(-wallNormal*wallRunForce, ForceMode.Force);
     }
     private void StopWallRun()
     {
         rb.useGravity = true;
         pm.wallRunning = false;
+    }
+    public void GetMoveInput(InputAction.CallbackContext callbackContext)
+    {
+        input = callbackContext.ReadValue<Vector3>();
+        
     }
 }
