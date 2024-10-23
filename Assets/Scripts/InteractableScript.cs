@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+
 
 public class InteractableScript : MonoBehaviour
 {   
@@ -11,13 +14,10 @@ public class InteractableScript : MonoBehaviour
         if (interactable == null && other.gameObject.CompareTag("Interactable"))
         interactable = other.gameObject.GetComponent<InteractiveObject>();
     }
-    private void Update()
+   
+    public void Interact(InputAction.CallbackContext callbackContext)
     {
-        Interact();
-    }
-    void Interact()
-    {
-        if (interactable != null && Input.GetKeyDown(KeyCode.E))
+        if (interactable != null && callbackContext.performed)
             interactable.Interaction();
     }
 
