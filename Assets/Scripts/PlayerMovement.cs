@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using static UnityEngine.InputSystem.InputAction;
 
 public class PlayerMovement : MonoBehaviour
@@ -16,12 +17,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] CapsuleCollider standingCollider, crouchingCollider;
     [SerializeField] Transform standingHeight, crouchingHeight;
     [SerializeField] GameObject head;
+    [SerializeField] Slider staminaSlider;
 
     private Vector3 moveDirection, localVelocity;
 
     private bool grounded = true, running = false, crouching = false, kneeSliding = false;
-    public bool wallRunning = false;
+    public bool wallRunning = false, canRecover=true;
     private float velocityX, velocityZ;
+    [SerializeField] private float stamina = 100f;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -35,9 +39,9 @@ public class PlayerMovement : MonoBehaviour
         //Debugging
         //Debug.Log(running);
 
-
+        staminaSlider.value=stamina;
         //Run
-        if (moveDirection.z == 0 || localVelocity.z <= 0)
+        if (moveDirection.z == 0 || localVelocity.z <= 0 || stamina==0f)
         {
             running = false;
         }
@@ -55,6 +59,21 @@ public class PlayerMovement : MonoBehaviour
             crouchingCollider.enabled = true;
             standingCollider.enabled = false;
         }
+        if(!running && canRecover)
+        { 
+
+            stamina += 15*Time.deltaTime;
+            stamina = Mathf.Clamp(stamina, 0, 100);
+        }
+        else
+        {    
+            stamina -= 7.5f*Time.deltaTime;
+            stamina = Mathf.Clamp(stamina, 0, 100);
+            if (stamina <= 0)
+                StartCoroutine(Fatigue());
+
+        }
+       
     }
 
     private void FixedUpdate()
@@ -133,6 +152,7 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator KneeSlide()
     {
+        stamina -= 20;
         kneeSliding = true;
         yield return new WaitForSeconds(.6f);
         kneeSliding = false;
@@ -160,7 +180,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Run(InputAction.CallbackContext callbackContext)
     {
-        if (grounded && callbackContext.performed)
+        if (grounded && callbackContext.performed && stamina >0)
         {
             running = true;
         }
@@ -182,6 +202,14 @@ public class PlayerMovement : MonoBehaviour
             crouching = false;
         }
     }
+    //Stamina
+    IEnumerator Fatigue() 
+    {
+        canRecover = false;
+         yield return new WaitForSeconds(2f);
+        canRecover = true;
+        stamina = 5;
+            }
 
     //Collisions
     private void OnCollisionStay(Collision collision)
