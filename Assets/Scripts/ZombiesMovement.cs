@@ -8,6 +8,7 @@ public class ZombiesMovement : MonoBehaviour
     private Transform player;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] MeshRenderer zombieRenderer;
+    [SerializeField] float health;
     private int speed;
 
 
@@ -33,5 +34,15 @@ public class ZombiesMovement : MonoBehaviour
         }
 
         agent.destination = player.position;
+
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
     }
 }
