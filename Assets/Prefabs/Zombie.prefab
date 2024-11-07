@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 4677573964840773376}
   m_Layer: 0
   m_Name: Zombie
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -173,5 +173,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 5295362224507293516}
   zombieRenderer: {fileID: 494956793828331940}
-  waitTime: 0
+  health: 5
+  waitTime: 12
   timeReference: 0
