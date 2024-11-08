@@ -8,9 +8,10 @@ public class ZombiesMovement : MonoBehaviour
     private Transform player;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] MeshRenderer zombieRenderer;
-    [SerializeField] float health;
+    [SerializeField] float health, damage;
     private int speed;
 
+    private bool attacking = false;
 
     public float waitTime, timeReference = 0;
 
@@ -27,7 +28,7 @@ public class ZombiesMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Time.time - timeReference > waitTime)
+        if (Time.time - timeReference > waitTime && !attacking)
         {
             agent.speed = speed;
             zombieRenderer.enabled = true;
@@ -41,8 +42,28 @@ public class ZombiesMovement : MonoBehaviour
         }
     }
 
+    //funciones
     public void TakeDamage(float damage)
     {
         health -= damage;
+    }
+
+    IEnumerator Attack()
+    {
+        attacking = true;
+        Debug.Log("attack");
+        agent.speed = 0f;
+        yield return new WaitForSeconds(.7f);
+        PlayerMovement.playerScript.TakeDamge(damage);
+        attacking = false;
+    }
+
+    //collisions
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            StartCoroutine(Attack());
+        }
     }
 }
