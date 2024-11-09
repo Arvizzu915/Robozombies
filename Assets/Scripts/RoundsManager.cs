@@ -8,6 +8,8 @@ public class RoundsManager : MonoBehaviour
 
     [SerializeField] GameObject zombie;
 
+    public List<GameObject> zombiesActive = new List<GameObject>();
+
     public int round = 1;
 
     public int numberOfZombiesInRound = 10;
@@ -24,8 +26,16 @@ public class RoundsManager : MonoBehaviour
 
     public bool normalRound = true;
 
+
     private Transform spawn;
     private int spawnIndex;
+
+    public static RoundsManager roundsScript;
+
+    private void Start()
+    {
+        roundsScript = this;
+    }
 
     private void Update()
     {

@@ -11,14 +11,16 @@ public class ZombiesMovement : MonoBehaviour
     [SerializeField] float health, damage;
     private int speed;
 
-    private bool attacking = false;
+    private bool attacking = false, appeared = false;
 
     public float waitTime, timeReference = 0;
 
+    public int spawnIndex = 0;
 
     // Start is called before the first frame update
     void Start()
     {
+        RoundsManager.roundsScript.zombiesActive.Add(gameObject);
         agent.speed = 0;
         timeReference = Time.time;
         player = GameObject.Find("Player").transform;
@@ -28,8 +30,10 @@ public class ZombiesMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (Time.time - timeReference > waitTime && !attacking)
         {
+            appeared = true;
             agent.speed = speed;
             zombieRenderer.enabled = true;
         }
@@ -38,6 +42,7 @@ public class ZombiesMovement : MonoBehaviour
 
         if (health <= 0)
         {
+            
             Destroy(gameObject);
         }
     }
@@ -46,6 +51,16 @@ public class ZombiesMovement : MonoBehaviour
     public void TakeDamage(float damage)
     {
         health -= damage;
+    }
+
+    public void ChangeSpawn()
+    {
+        if (!appeared)
+        {
+            spawnIndex = Random.Range(0, RoundsManager.roundsScript.availableSpawns.Count);
+            transform.position = RoundsManager.roundsScript.availableSpawns[spawnIndex].position;
+        }
+        
     }
 
     IEnumerator Attack()

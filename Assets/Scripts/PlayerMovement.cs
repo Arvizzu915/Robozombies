@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
 
 
         //health
-        if (Time.time - healthTimeReference > 1f && currentHealth < maxHealth)
+        if (Time.time - healthTimeReference > .3f && currentHealth < maxHealth)
         {
             currentHealth++;
             healthTimeReference = Time.time;
