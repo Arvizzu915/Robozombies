@@ -8,6 +8,7 @@ public class ZombiesMovement : MonoBehaviour
     private Transform player;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] MeshRenderer zombieRenderer;
+    [SerializeField] Collider zombieCollider, attackCollider;
     [SerializeField] float health, damage;
     private int speed;
 
@@ -36,6 +37,8 @@ public class ZombiesMovement : MonoBehaviour
             appeared = true;
             agent.speed = speed;
             zombieRenderer.enabled = true;
+            zombieCollider.enabled = true;
+            attackCollider.enabled = true;
         }
 
         agent.destination = player.position;
