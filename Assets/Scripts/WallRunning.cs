@@ -59,10 +59,12 @@ public class WallRunning : MonoBehaviour
         
 
         //State 1
-        if((wallLeft||wallRight) && input.z!=0 && AboveGround()) 
+        if((wallLeft||wallRight) && input.z > 0 && AboveGround()) 
         { 
             if(!pm.wallRunning)
-        StartWallRun();
+            {
+                StartWallRun();
+            }
         }
         else
         {

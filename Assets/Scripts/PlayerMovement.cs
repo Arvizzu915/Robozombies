@@ -12,11 +12,12 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] Camera mainCamera;
 
-    [SerializeField] float walkingSpeed, jumpForce, runningSpeed,wallrunSpeed;
+    [SerializeField] float walkingSpeed, jumpForce, runningSpeed,wallrunSpeed, maxHealth;
 
     [SerializeField] CapsuleCollider standingCollider, crouchingCollider;
     [SerializeField] Transform standingHeight, crouchingHeight;
     [SerializeField] GameObject head;
+    [SerializeField] private float stamina = 100f;
     [SerializeField] Slider staminaSlider;
 
     private Vector3 moveDirection, localVelocity;
@@ -24,13 +25,17 @@ public class PlayerMovement : MonoBehaviour
     private bool grounded = true, running = false, crouching = false, kneeSliding = false;
     public bool wallRunning = false, canRecover=true;
     private float velocityX, velocityZ;
-    [SerializeField] private float stamina = 100f;
+    public float currentHealth, healthTimeReference = 0;
     
+
+
+    public static PlayerMovement playerScript;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerScript = this;
+        currentHealth = maxHealth;
     }
 
     // Update is called once per frame
@@ -40,6 +45,15 @@ public class PlayerMovement : MonoBehaviour
         //Debug.Log(running);
 
         staminaSlider.value=stamina;
+
+
+        //health
+        if (Time.time - healthTimeReference > .3f && currentHealth < maxHealth)
+        {
+            currentHealth++;
+            healthTimeReference = Time.time;
+        }
+
         //Run
         if (moveDirection.z == 0 || localVelocity.z <= 0 || stamina==0f)
         {
@@ -156,6 +170,20 @@ public class PlayerMovement : MonoBehaviour
         kneeSliding = true;
         yield return new WaitForSeconds(.6f);
         kneeSliding = false;
+    }
+
+    public void TakeDamge(float damage)
+    {
+        currentHealth -= damage;
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        Time.timeScale = 0.1f;
     }
 
     //Player Actions
