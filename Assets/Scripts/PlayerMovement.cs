@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float stamina = 100f;
     [SerializeField] Slider staminaSlider;
 
-    private Vector3 moveDirection, localVelocity;
+    public Vector3 moveDirection, localVelocity;
 
     private bool grounded = true, running = false, crouching = false, kneeSliding = false;
     public bool wallRunning = false, canRecover=true;
