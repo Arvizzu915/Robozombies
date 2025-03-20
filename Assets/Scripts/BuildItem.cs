@@ -2,7 +2,6 @@ using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
@@ -14,7 +13,7 @@ public class BuildItem : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(canBePlaced);
+        //Debug.Log(canBePlaced);
 
         if (onZone && !overlaping)
         {
@@ -23,6 +22,15 @@ public class BuildItem : MonoBehaviour
         else
         {
             canBePlaced = false;
+        }
+    }
+
+    public void Rotate(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            Debug.Log("rotate");
+            transform.Rotate(0, 0, 22.5f * context.ReadValue<Vector2>().normalized.x);
         }
     }
 
