@@ -31,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
 
     public static PlayerMovement playerScript;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -95,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (gliding)
         {
-            rb.velocity = new Vector3(rb.velocity.x, -2f, rb.velocity.z);
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x, -2f, rb.linearVelocity.z);
         }
 
         //Move
@@ -108,11 +109,11 @@ public class PlayerMovement : MonoBehaviour
     //Funciones
     private void Move()
     {
-        localVelocity = transform.InverseTransformDirection(rb.velocity);
+        localVelocity = transform.InverseTransformDirection(rb.linearVelocity);
 
         if (grounded)
         {
-            gliding = false;
+            
 
             if (!running && !kneeSliding)
             {
@@ -153,7 +154,7 @@ public class PlayerMovement : MonoBehaviour
         localVelocity.x = velocityX;
         localVelocity.z = velocityZ;
 
-        rb.velocity = transform.TransformDirection(localVelocity);
+        rb.linearVelocity = transform.TransformDirection(localVelocity);
     }
 
     private void RotatePlayerTowardsCamera()
@@ -200,17 +201,14 @@ public class PlayerMovement : MonoBehaviour
         {
             kneeSliding = false;
             crouching = false;
-            rb.velocity = new Vector3 (rb.velocity.x, 0f, rb.velocity.z);
+            rb.linearVelocity = new Vector3 (rb.linearVelocity.x, 0f, rb.linearVelocity.z);
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
     }
 
     public void Move(InputAction.CallbackContext callbackContext)
     {
-        if (callbackContext.performed)
-        {
-            moveDirection = callbackContext.ReadValue<Vector3>().normalized;
-        }
+        moveDirection = callbackContext.ReadValue<Vector3>().normalized;
     }
 
     public void Run(InputAction.CallbackContext callbackContext)
@@ -271,6 +269,7 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.CompareTag("Ground"))
         {
             grounded = true;
+            gliding = false;
         }
     }
 

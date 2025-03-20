@@ -84,7 +84,7 @@ public class WallRunning : MonoBehaviour
     private void WallRunningMovement()
     {
         rb.useGravity = false;
-        rb.velocity = new Vector3(rb.velocity.x,0f,rb.velocity.z);
+        rb.linearVelocity = new Vector3(rb.linearVelocity.x,0f,rb.linearVelocity.z);
         Vector3 wallNormal = wallRight ? rightWallhit.normal :leftWallhit.normal;
         Vector3 wallForward = Vector3.Cross(wallNormal, transform.up);
 

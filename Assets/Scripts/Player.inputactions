@@ -9,7 +9,7 @@
                     "name": "Jump",
                     "type": "Button",
                     "id": "0a4f15cf-3550-43fa-abc8-28fc9638922a",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -82,6 +82,15 @@
                     "type": "Button",
                     "id": "c851f363-6c8d-4aeb-a5ad-c92a9f52e072",
                     "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PlaceObject",
+                    "type": "Button",
+                    "id": "966fa4de-7881-4a4d-a7ec-271007a4312f",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -228,6 +237,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Glide",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9ac4848f-7c09-4f88-8ed4-827c2842f52e",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlaceObject",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
