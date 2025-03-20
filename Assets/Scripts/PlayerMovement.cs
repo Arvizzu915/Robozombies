@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 moveDirection, localVelocity;
 
     private bool grounded = true, running = false, crouching = false, kneeSliding = false;
-    public bool wallRunning = false, canRecover=true;
+    public bool wallRunning = false, canRecover=true, gliding = false;
     private float velocityX, velocityZ;
     public float currentHealth, healthTimeReference = 0;
     
@@ -93,6 +93,11 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
 
+        if (gliding)
+        {
+            rb.velocity = new Vector3(rb.velocity.x, -2f, rb.velocity.z);
+        }
+
         //Move
         Move();
 
@@ -107,6 +112,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (grounded)
         {
+            gliding = false;
+
             if (!running && !kneeSliding)
             {
                 velocityX = moveDirection.x * walkingSpeed / 1.3f;
@@ -230,6 +237,15 @@ public class PlayerMovement : MonoBehaviour
             crouching = false;
         }
     }
+
+    public void Glide(InputAction.CallbackContext callbackContext)
+    {
+        if (!grounded && callbackContext.started)
+        {
+            gliding = true;
+        }
+    }
+
     //Stamina
     IEnumerator Fatigue() 
     {
