@@ -106,9 +106,9 @@
                 },
                 {
                     "name": "RotateObject",
-                    "type": "PassThrough",
+                    "type": "Button",
                     "id": "51535a29-4fe4-4674-aa97-15fe4951f7da",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -261,7 +261,7 @@
                 {
                     "name": "",
                     "id": "9ac4848f-7c09-4f88-8ed4-827c2842f52e",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -272,7 +272,7 @@
                 {
                     "name": "",
                     "id": "0293362e-dae4-424c-a760-6db975377a52",
-                    "path": "<Keyboard>/f",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -281,37 +281,15 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "2D Vector",
-                    "id": "49f490af-e322-4add-b2e8-8856e67ac9ca",
-                    "path": "2DVector",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "RotateObject",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "left",
-                    "id": "798cebaf-a100-4c0e-9678-7bf6fa272fc7",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "RotateObject",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "9f1fcac7-bc44-4d6d-84a4-7594daf531f7",
+                    "name": "",
+                    "id": "40e95bbb-3be1-424c-a7f0-27ab166bb65d",
                     "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "RotateObject",
                     "isComposite": false,
-                    "isPartOfComposite": true
+                    "isPartOfComposite": false
                 }
             ]
         }

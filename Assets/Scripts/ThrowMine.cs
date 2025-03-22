@@ -8,23 +8,18 @@ public class ThrowMine : MonoBehaviour
 
     public GameObject currentMine;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void Throw(InputAction.CallbackContext context)
     {
-        if (context.started && currentMine==null)
+        if (context.started)
         {
-            currentMine = Instantiate(mine, transform.position, gun.rotation);
+            if (currentMine == null)
+            {
+                currentMine = Instantiate(mine, transform.position, gun.rotation);
+            }
+            else
+            {
+                currentMine.GetComponent<mina>().DetonateMine();
+            }
         }
     }
 }

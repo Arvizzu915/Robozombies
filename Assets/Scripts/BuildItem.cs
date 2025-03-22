@@ -8,6 +8,8 @@ using UnityEngine.UI;
 public class BuildItem : MonoBehaviour
 {
     [SerializeField] private GameObject item;
+    [SerializeField] Material canBePlacedMat, canNotBePlacedMat;
+    [SerializeField] MeshRenderer meshRenderer;
 
     private bool canBePlaced, onZone, overlaping;
 
@@ -18,10 +20,12 @@ public class BuildItem : MonoBehaviour
         if (onZone && !overlaping)
         {
             canBePlaced = true;
+            meshRenderer.material = canBePlacedMat;
         }
         else
         {
             canBePlaced = false;
+            meshRenderer.material = canNotBePlacedMat;
         }
     }
 
@@ -30,7 +34,7 @@ public class BuildItem : MonoBehaviour
         if (context.started)
         {
             Debug.Log("rotate");
-            transform.Rotate(0, 0, 22.5f * context.ReadValue<Vector2>().normalized.x);
+            transform.Rotate(0, 45, 0);
         }
     }
 

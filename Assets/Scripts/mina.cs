@@ -16,4 +16,20 @@ public class mina : MonoBehaviour
     {
         rb.isKinematic = true;
     }
+
+    public void DetonateMine()
+    {
+        explosionZone.enabled = true;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            other.gameObject.GetComponent<Rigidbody>().AddExplosionForce(5f, transform.position, 10f);
+            Destroy(gameObject);
+        }
+        other.gameObject.GetComponent<Rigidbody>().AddExplosionForce(5f, transform.position, 10f);
+        Destroy(gameObject);
+    }
 }
