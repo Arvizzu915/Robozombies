@@ -26,10 +26,15 @@ public class mina : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<Rigidbody>().AddExplosionForce(5f, transform.position, 10f);
-            Destroy(gameObject);
+            //other.gameObject.GetComponent<Rigidbody>().AddExplosionForce(50f, transform.position, 10f);
+            //Destroy(gameObject);
         }
-        other.gameObject.GetComponent<Rigidbody>().AddExplosionForce(5f, transform.position, 10f);
+        if (other.gameObject.GetComponent<Rigidbody>() != null) 
+        {
+            other.gameObject.GetComponent<Rigidbody>().AddExplosionForce(-1750f, transform.position, 10f);
+            
+        }
         Destroy(gameObject);
+
     }
 }
