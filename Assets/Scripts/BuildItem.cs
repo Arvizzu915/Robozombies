@@ -42,7 +42,6 @@ public class BuildItem : MonoBehaviour
     {
         if (canBePlaced && callbackContext.started)
         {
-            
             SaveData.singleton.turretsPlacementsData.AddTo(Instantiate(item, transform.position, transform.rotation));
         }
     }
