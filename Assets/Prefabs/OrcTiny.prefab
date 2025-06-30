@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7365256363906627343}
   - component: {fileID: 1727518591591666347}
   - component: {fileID: 5295362224507293516}
-  - component: {fileID: 223123439125556556}
+  - component: {fileID: 6474418743391432434}
   m_Layer: 9
   m_Name: OrcTiny
   m_TagString: Enemy
@@ -109,7 +109,7 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &223123439125556556
+--- !u!114 &6474418743391432434
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,18 +118,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 29968266667588629}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 941e23a8a80e9b4448b4b3a5f77dcdca, type: 3}
+  m_Script: {fileID: 11500000, guid: 9b507537059499148b4c205cd2954158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 5295362224507293516}
   orcRenderer: {fileID: 5590252543418338050}
   orcCollider: {fileID: 7365256363906627343}
   attackCollider: {fileID: 9047364421171992772}
-  health: 10
-  damage: 2
+  health: 5
+  damage: 1
   speed: 3
   rb: {fileID: 1727518591591666347}
-  waitTime: 2
+  waitTime: 1
   timeReference: 0
   spawnIndex: 1
 --- !u!1 &5267418006937133453
