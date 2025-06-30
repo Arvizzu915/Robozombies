@@ -7,10 +7,11 @@ public class OrcMovement : MonoBehaviour
 {
     protected Transform goal;
     [SerializeField] protected NavMeshAgent agent;
-    [SerializeField] protected MeshRenderer zombieRenderer;
-    [SerializeField] protected Collider zombieCollider, attackCollider;
+    [SerializeField] protected GameObject orcRenderer;
+    [SerializeField] protected Collider orcCollider, attackCollider;
     [SerializeField] protected float health, damage;
     [SerializeField] protected int speed;
+    [SerializeField] protected Rigidbody rb;
 
     private bool attacking = false, appeared = false;
 
@@ -36,8 +37,8 @@ public class OrcMovement : MonoBehaviour
         {
             appeared = true;
             agent.speed = speed;
-            zombieRenderer.enabled = true;
-            zombieCollider.enabled = true;
+            orcRenderer.SetActive(true);
+            orcCollider.enabled = true;
             attackCollider.enabled = true;
         }
 
