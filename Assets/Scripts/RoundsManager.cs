@@ -6,9 +6,9 @@ public class RoundsManager : MonoBehaviour
 {
     [SerializeField] public List<Transform> availableSpawns = new List<Transform>();
 
-    [SerializeField] GameObject zombie;
+    [SerializeField] OrcMovement[] zombie;
 
-    public List<GameObject> zombiesActive = new List<GameObject>();
+    public List<OrcMovement> zombiesActive = new();
 
     public int round = 1;
 
@@ -29,6 +29,8 @@ public class RoundsManager : MonoBehaviour
 
     private Transform spawn;
     private int spawnIndex;
+
+    private int zombieIndex = 0;
 
     public static RoundsManager roundsScript;
 
@@ -52,9 +54,21 @@ public class RoundsManager : MonoBehaviour
                 spawnIndex = Random.Range(0, availableSpawns.Count);
                 numberOfZombiesSpawned++;
                 numberOfZombiesAlive++;
-                Instantiate(zombie, availableSpawns[spawnIndex].position, availableSpawns[spawnIndex].rotation);
+
+                
+
+                OrcMovement newZombie = Instantiate(zombie[zombieIndex], availableSpawns[spawnIndex].position, availableSpawns[spawnIndex].rotation);
                 float time = Random.Range(10, 25);
-                zombie.gameObject.GetComponent<ZombiesMovement>().waitTime = time;
+                newZombie.gameObject.GetComponent<OrcMovement>().waitTime = time;
+
+                if (zombieIndex == zombie.Length - 1)
+                {
+                    zombieIndex = 0;
+                }
+                else
+                {
+                    zombieIndex++;
+                }
             }
         }
     }

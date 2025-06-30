@@ -29,8 +29,8 @@ Transform:
   m_GameObject: {fileID: 29968266667588629}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.41, y: 0, z: -15.66}
-  m_LocalScale: {x: 9.455299, y: 9.455299, z: 9.455299}
+  m_LocalPosition: {x: -2.41, y: 0.998, z: -15.66}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8183719019843624089}
@@ -85,7 +85,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 1
 --- !u!195 &5295362224507293516
 NavMeshAgent:
@@ -100,7 +100,7 @@ NavMeshAgent:
   m_Speed: 1
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 30
+  m_AngularSpeed: 200
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -127,7 +127,7 @@ MonoBehaviour:
   attackCollider: {fileID: 9047364421171992772}
   health: 10
   damage: 2
-  speed: 3
+  speed: 4
   rb: {fileID: 1727518591591666347}
   waitTime: 2
   timeReference: 0
@@ -199,7 +199,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 28c2ef036c19ab34c87246dec6ac6e9a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.922
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 28c2ef036c19ab34c87246dec6ac6e9a, type: 3}
       propertyPath: m_LocalPosition.z

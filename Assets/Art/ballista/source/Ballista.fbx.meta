@@ -3,7 +3,42 @@ guid: 9b7fc8b747ed9574d89e455ed1b497be
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Feathers.003
+    second: {fileID: 2100000, guid: 35536008a44ae5e45bf7b52342aa02d1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal.003
+    second: {fileID: 2100000, guid: 83825dab197cc2a47a9532d94cbb48d5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rope.003
+    second: {fileID: 2100000, guid: 52003d4b7f252c84cb9bb85d2a4dae02, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wood01.003
+    second: {fileID: 2100000, guid: 59890ba6098a14b45b051f8c39023724, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wood02.003
+    second: {fileID: 2100000, guid: 77b440e068feb0e4db45d2321821ce03, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wood02.004
+    second: {fileID: 2100000, guid: a8df0c14df604144785f48ed39147d67, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wood03.003
+    second: {fileID: 2100000, guid: 9278111e48bc9a3488b3c527ba00dd26, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -33,7 +68,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 3
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -88,7 +123,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
+    globalScale: 0.03
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

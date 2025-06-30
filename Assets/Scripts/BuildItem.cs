@@ -4,14 +4,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.InputSystem.Controls;
 
 public class BuildItem : MonoBehaviour
 {
-    [SerializeField] private GameObject item;
+    [SerializeField] public GameObject item;
     [SerializeField] Material canBePlacedMat, canNotBePlacedMat;
     [SerializeField] MeshRenderer meshRenderer;
+    
 
-    private bool canBePlaced, onZone, overlaping;
+
+    public bool canBePlaced, onZone, overlaping;
 
     void Update()
     {
@@ -29,23 +32,7 @@ public class BuildItem : MonoBehaviour
         }
     }
 
-    public void Rotate(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
-            Debug.Log("rotate");
-            transform.Rotate(0, 45, 0);
-        }
-    }
-
-    public void PlaceObject(InputAction.CallbackContext callbackContext)
-    {
-        if (canBePlaced && callbackContext.started)
-        {
-            SaveData.singleton.turretsPlacementsData.AddTo(Instantiate(item, transform.position, transform.rotation));
-        }
-    }
-
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("BuildZone"))
@@ -55,6 +42,7 @@ public class BuildItem : MonoBehaviour
 
         if (!other.gameObject.CompareTag("BuildZone"))
         {
+            Debug.Log(other);
             overlaping = true;
         }
     }

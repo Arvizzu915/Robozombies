@@ -14,7 +14,7 @@ public class SpawnerManager : MonoBehaviour
         {
             if(zombie != null)
             {
-                zombie.gameObject.GetComponent<ZombiesMovement>().ChangeSpawn();
+                zombie.gameObject.GetComponent<OrcMovement>().ChangeSpawn();
             }
         }
     }

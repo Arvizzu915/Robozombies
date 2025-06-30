@@ -21,7 +21,7 @@ public class ZombiesMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        RoundsManager.roundsScript.zombiesActive.Add(gameObject);
+        //RoundsManager.roundsScript.zombiesActive.Add(gameObject);
         agent.speed = 0;
         timeReference = Time.time;
         player = GameObject.Find("Player").transform;

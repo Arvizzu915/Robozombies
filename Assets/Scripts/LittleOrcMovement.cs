@@ -16,6 +16,10 @@ public class LittleOrcMovement : OrcMovement
             health -= damage;
             rb.AddForce(Vector3.back);
         }
+        else if (type == DamageTypes.slow)
+        {
+            agent.speed = speed * damage;
+        }
         else
         {
             health -= damage;

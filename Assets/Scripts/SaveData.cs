@@ -58,6 +58,14 @@ public class SaveData : MonoBehaviour
         }
     }
 
+    public void ClearTorrets(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started)
+        {
+            turretsPlacementsData.Clear();
+        }
+    }
+
     public void SaveGame()
     {
         string turretsData = JsonUtility.ToJson(turretsPlacementsData, true);
@@ -99,6 +107,11 @@ public class TurretsPlacements
 
         turrets.Add(turretToAdd);
         Debug.Log("Torreta añadida: " + turretToAdd.prefabName);
+    }
+
+    public void Clear()
+    {
+        turrets.Clear();
     }
 }
 

@@ -8,6 +8,7 @@ TagManager:
   - Interactable
   - Enemy
   - BuildZone
+  - buildable
   layers:
   - Default
   - TransparentFX

@@ -22,7 +22,7 @@ public class OrcMovement : MonoBehaviour
     // Start is called before the first frame update
   public virtual void Start()
     {
-        RoundsManager.roundsScript.zombiesActive.Add(gameObject);
+        RoundsManager.roundsScript.zombiesActive.Add(this);
         agent.speed = 0;
         timeReference = Time.time;
         goal = GameObject.Find("Goal").transform;
