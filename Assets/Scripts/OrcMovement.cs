@@ -84,6 +84,11 @@ public class OrcMovement : MonoBehaviour
         {
             StartCoroutine(Attack());
         }
+
+        if (other.TryGetComponent<Base>(out Base baseScript))
+        {
+            baseScript.TakeDamage(damage);
+        }
     }
 
     

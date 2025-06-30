@@ -1,9 +1,12 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
+using UnityEngine.UI;
 
 public class BuildMode : MonoBehaviour
 {
+    
+
     [SerializeField] private GameObject buildableActive;
 
     [SerializeField] private GameObject buildUI;
@@ -13,6 +16,8 @@ public class BuildMode : MonoBehaviour
     [SerializeField] private GameObject[] itemPreview;
 
     bool inBuildMode = false;
+
+    
 
     public void EnterBuildMode(InputAction.CallbackContext context)
     {

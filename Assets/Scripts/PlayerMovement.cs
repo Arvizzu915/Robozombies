@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] Rigidbody rb;
 
+    [SerializeField] private Slider healthSlider;
+
     [SerializeField] Camera mainCamera;
 
     [SerializeField] float walkingSpeed, jumpForce, runningSpeed,wallrunSpeed, maxHealth;
@@ -183,6 +185,7 @@ public class PlayerMovement : MonoBehaviour
     public void TakeDamge(float damage)
     {
         currentHealth -= damage;
+        healthSlider.value = currentHealth;
         if (currentHealth <= 0)
         {
             Die();
